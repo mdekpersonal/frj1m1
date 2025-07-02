@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Mon école de français</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+        }
+        .login-container {
+            max-width: 350px;
+            margin: 4rem auto;
+            background: #fffbe7;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(60,60,60,0.15);
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        .login-container h1 {
+            color: #2d8f85;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .login-container label {
+            font-size: 1.2rem;
+            color: #2d8f85;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 90%;
+            padding: 0.7rem;
+            margin-bottom: 1.2rem;
+            border-radius: 12px;
+            border: 1px solid #b2dfdb;
+            font-size: 1.1rem;
+            background: #f0f8ff;
+        }
+        .login-container button {
+            background: #ffe082;
+            color: #2d8f85;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 16px;
+            padding: 0.7rem 2rem;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(60,60,60,0.08);
+            transition: background 0.2s;
+        }
+        .login-container button:hover {
+            background: #ffd54f;
+        }
+        .emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hint {
+            color: #888;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="emoji">🐻🎒</div>
+        <h1>Connexion</h1>
+        <form onsubmit="event.preventDefault(); window.location.href='index.html';">
+            <label for="username">Ton prénom :</label>
+            <input type="text" id="username" name="username" placeholder="Ex : Léo" autocomplete="off" required>
+
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" placeholder="****" required>
+
+            <button type="submit">Entrer</button>
+        </form>
+        <div class="hint">Astuce : Demande à ton enseignant(e) si tu as oublié ton mot de passe !</div>
+    </div>
+    <script>
+    // Redirection automatique si l'utilisateur n'est pas connecté (exemple simple)
+    if (window.location.pathname.endsWith('index.html')) {
+        window.location.replace('login.html');
+    }
+    </script>
+</body>
+</html>
