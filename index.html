@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <script>
+      // Manual localStorage authentication check
+      if (!localStorage.getItem('loggedInUser')) {
+        window.location.replace('login.html');
+      }
+    </script>
     <div class="app-container">
         <h1> EXCELLENCE ONLINE CENTER</h1>
         <h1> THE B.Y.O.O METHOD</h1>
@@ -20,11 +26,7 @@
             <a href="lessons/lesson4.html" class="lesson-link">Leçon 4 : Les nombres 1 à 10 et l’âge</a>
             <a href="lessons/lesson5.html" class="lesson-link">Leçon 5 : Les jours de la semaine et la routine</a>
         </div>
-
-      
+        <button onclick="localStorage.removeItem('loggedInUser'); window.location.href='login.html';">Déconnexion</button>
     </div>
-    <script>
-  window.location.replace('login.html');
-</script>
 </body>
 </html>

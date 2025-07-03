@@ -62,28 +62,46 @@
             font-size: 1rem;
             margin-top: 1rem;
         }
+        .error-message {
+            color: #d32f2f;
+            margin-top: 1em;
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
         <div class="emoji">🐻🎒</div>
         <h1>Connexion</h1>
-        <form onsubmit="event.preventDefault(); window.location.href='index.html';">
-            <label for="username">Ton prénom :</label>
-            <input type="text" id="username" name="username" placeholder="Ex : Léo" autocomplete="off" required>
+        <form id="login-form">
+            <label for="username">Ton nom :</label>
+            <input type="text" id="username" name="username" placeholder="" autocomplete="off" required>
 
             <label for="password">Mot de passe :</label>
             <input type="password" id="password" name="password" placeholder="****" required>
 
             <button type="submit">Entrer</button>
         </form>
+        <div id="login-message" class="error-message"></div>
         <div class="hint">Astuce : Demande à ton enseignant(e) si tu as oublié ton mot de passe !</div>
     </div>
     <script>
-    // Redirection automatique si l'utilisateur n'est pas connecté (exemple simple)
-    if (window.location.pathname.endsWith('index.html')) {
-        window.location.replace('login.html');
-    }
+    const users = {
+  "samira": "040391",
+  "student2": "password2",
+  "student3": "password3"
+};
+
+document.getElementById('login-form').onsubmit = function(e) {
+  e.preventDefault();
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value;
+  if (users[username] && users[username] === password) {
+    localStorage.setItem('loggedInUser', username);
+    window.location.href = "index.html";
+  } else {
+    document.getElementById('login-message').textContent = "Nom d'utilisateur ou mot de passe incorrect.";
+  }
+};
     </script>
 </body>
 </html>
