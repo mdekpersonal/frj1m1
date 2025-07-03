@@ -262,5 +262,20 @@ function toggleAnswer(id) {
     }
 }
 </script>
+<script>
+  const TIMEOUT_MINUTES = 30;
+  const loginTime = localStorage.getItem('loginTime');
+  const now = Date.now();
+  if (!localStorage.getItem('loggedInUser') ||
+      !loginTime ||
+      now - parseInt(loginTime) > TIMEOUT_MINUTES * 60 * 1000) {
+    localStorage.removeItem('loggedInUser');
+    localStorage.removeItem('loginTime');
+    window.location.replace('../login.html');
+  }
+  document.onclick = document.onmousemove = document.onkeypress = function() {
+    localStorage.setItem('loginTime', Date.now());
+  };
+</script>
 </body>
 </html>
