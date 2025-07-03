@@ -86,22 +86,23 @@
     </div>
     <script>
     const users = {
-  "samira": "040391",
-  "labad": "100-97-98-97-108-362",
-  "jabar": "114-97-98-97-106-638"
-};
+      "samira": "040391",
+      "labad": "100-97-98-97-108-362",
+      "jabar": "114-97-98-97-106-638"
+    };
 
-document.getElementById('login-form').onsubmit = function(e) {
-  e.preventDefault();
-  const username = document.getElementById('username').value.trim();
-  const password = document.getElementById('password').value;
-  if (users[username] && users[username] === password) {
-    localStorage.setItem('loggedInUser', username);
-    window.location.href = "index.html";
-  } else {
-    document.getElementById('login-message').textContent = "Nom d'utilisateur ou mot de passe incorrect.";
-  }
-};
+    document.getElementById('login-form').onsubmit = function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      if (users[username] && users[username] === password) {
+        localStorage.setItem('loggedInUser', username);
+        localStorage.setItem('loginTime', Date.now());
+        window.location.href = "index.html";
+      } else {
+        document.getElementById('login-message').textContent = "Nom d'utilisateur ou mot de passe incorrect.";
+      }
+    };
     </script>
 </body>
 </html>

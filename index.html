@@ -8,10 +8,21 @@
 </head>
 <body>
     <script>
-      // Manual localStorage authentication check
-      if (!localStorage.getItem('loggedInUser')) {
+      // Manual localStorage authentication check with timeout
+      const TIMEOUT_MINUTES = 30;
+      const loginTime = localStorage.getItem('loginTime');
+      const now = Date.now();
+      if (!localStorage.getItem('loggedInUser') ||
+          !loginTime ||
+          now - parseInt(loginTime) > TIMEOUT_MINUTES * 60 * 1000) {
+        localStorage.removeItem('loggedInUser');
+        localStorage.removeItem('loginTime');
         window.location.replace('login.html');
       }
+      // Reset timer on activity
+      document.onclick = document.onmousemove = document.onkeypress = function() {
+        localStorage.setItem('loginTime', Date.now());
+      };
     </script>
     <div class="app-container">
         <h1> EXCELLENCE ONLINE CENTER</h1>
@@ -26,7 +37,7 @@
             <a href="lessons/lesson4.html" class="lesson-link">Leçon 4 : Les nombres 1 à 10 et l’âge</a>
             <a href="lessons/lesson5.html" class="lesson-link">Leçon 5 : Les jours de la semaine et la routine</a>
         </div>
-        <button onclick="localStorage.removeItem('loggedInUser'); window.location.href='login.html';">Déconnexion</button>
+        <button onclick="localStorage.removeItem('loggedInUser'); localStorage.removeItem('loginTime'); window.location.href='login.html';">Déconnexion</button>
     </div>
 </body>
 </html>
